@@ -1,7 +1,8 @@
 import re
 import cv2
-from keras.models import load_model
-from cvchess_functions import (read_img,
+from tensorflow import keras
+# from keras.models import load_model
+from cv_chess_functions import (read_img,
                                canny_edge,
                                hough_line,
                                h_v_lines,
@@ -29,10 +30,12 @@ def natural_keys(text):
 
 
 # Load in the CNN model
-model = load_model('model_VGG16.h5')
+# model = load_model('model_VGG19.h5')
+model = keras.models.load_model('model_VGG19.keras')
 
 # Select the live video stream source (0-webcam & 1-GoPro)
-cap = cv2.VideoCapture(1)
+video_file = '/Users/tharunselvam/Downloads/chess_vid'
+cap = cv2.VideoCapture(video_file)
 
 # Show the starting board either as blank or with the initial setup
 # start = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR'
